@@ -1,3 +1,30 @@
+;;; calibre-mode.el --- query calibre from emacs 
+
+;; Author: whacked
+;; Keywords: ebooks, calibre
+;; Package-Requires: ((emacs "24.1"))
+
+;; This file is NOT part of GNU Emacs.
+
+;;; Commentary:
+
+;; calibre-mode.el make it easy to query calibre and open ebooks from within emacs.
+;; If your Calibre library is not in the default location, `calibre--find-library-filepath` will try to find it; alternatively, set `calibre-root-dir` explicitly:
+
+;;   (setq calibre-root-dir (expand-file-name "~/Calibre Library"))
+
+;; if somehow your calibre library is not `metadata.db`, override the full db path directly:
+
+;;   (setq calibre-db (concat calibre-root-dir "/metadata.db"))
+
+;; M-x calibre-list: Prompts for a search string and displays all records which match on title or author.
+
+;; M-x calibre-find: Prompts for a search string.  Matches the first record which would have been matched by calibre-list.  Offers several options for opening the work.
+
+;; org-calibre-open: registers a handler for org links like `[[calibre:Quick Start Guide]]`
+
+;;; Code:
+
 (require 'org)
 (require 'cl)
 (require 'sql)
@@ -411,3 +438,5 @@
 (defun org-calibre-link-export (link description format)
   "FIXME: stub function"
   (concat "link in calibre: " link " (" description ")"))
+
+;;; calibre-mode.el ends here
